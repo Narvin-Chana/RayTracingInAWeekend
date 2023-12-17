@@ -3,6 +3,8 @@
 
 #include "Color.h"
 
+struct Hittable;
+
 class Ray
 {
 public:
@@ -22,7 +24,7 @@ public:
 		return origin + t * direction;
 	}
 
-	[[nodiscard]] Color ToColor() const;
+	[[nodiscard]] Color ToColor(const Hittable& worldObject) const;
 
 private:
 	glm::vec3 origin;

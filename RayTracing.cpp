@@ -3,6 +3,8 @@
 
 #include "Color.h"
 #include "Ray.h"
+#include "Scene.h"
+#include "Sphere.h"
 
 using std::cout, std::clog, std::flush;
 using namespace std::chrono;
@@ -16,7 +18,7 @@ int main()
 
 	// Calculate the image height, and ensure that it's at least 1.
 	int imageHeight = static_cast<int>(imageWidth / aspectRatio);
-	imageHeight = (imageHeight < 1) ? 1 : imageHeight;
+	imageHeight = imageHeight < 1 ? 1 : imageHeight;
 
 	// Viewport widths less than one are ok since they are real valued.
 	constexpr float focalLength = 1.0f;
@@ -33,6 +35,9 @@ int main()
 	auto viewportUpperLeft = cameraCenter - vec3(0, 0, focalLength) - viewportU / 2.0f - viewportV / 2.0f;
 	auto pixel00Location = viewportUpperLeft + 0.5f * (pixelDeltaU + pixelDeltaV);
 
+	// World Scene
+	Scene scene{Sphere({0, 0, -1.0f}, 0.5f), Sphere({0, -100.5f, -1.0f}, 100)};
+
 	// Render
 	cout << "P3\n" << imageWidth << ' ' << imageHeight << "\n255\n";
 
@@ -43,12 +48,13 @@ int main()
 		clog << "\rScanlines remaining: " << imageHeight - j << " of " << imageHeight << ' ' << flush;
 		for (int i = 0; i < imageWidth; ++i)
 		{
-			vec3 pixelCenter = pixel00Location + static_cast<float>(i) * pixelDeltaU + static_cast<float>(j) * pixelDeltaV;
+			vec3 pixelCenter = pixel00Location + static_cast<float>(i) * pixelDeltaU + static_cast<float>(j) *
+				pixelDeltaV;
 			vec3 rayDirection = pixelCenter - cameraCenter;
 
 			Ray ray(cameraCenter, rayDirection);
 
-			WriteColor(std::cout, ray.ToColor());
+			WriteColor(std::cout, ray.ToColor(scene));
 		}
 	}
 	const auto end = high_resolution_clock::now();
