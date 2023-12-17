@@ -24,7 +24,7 @@ public:
 		return origin + t * direction;
 	}
 
-	[[nodiscard]] Color ToColor(const Hittable& worldObject) const;
+	[[nodiscard]] Color ToColor(const Hittable& worldObject, int depth) const;
 
 private:
 	glm::vec3 origin;

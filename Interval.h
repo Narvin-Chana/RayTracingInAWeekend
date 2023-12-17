@@ -24,6 +24,11 @@ struct Interval
 	{
 		return min < x && x < max;
 	}
+
+	float Clamp(const float x) const
+	{
+		return std::clamp(x, min, max);
+	}
 };
 
 const static Interval Empty(+Interval::ValueType::infinity(), -Interval::ValueType::infinity());

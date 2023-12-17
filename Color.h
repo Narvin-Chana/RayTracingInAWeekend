@@ -3,12 +3,25 @@
 #include <ostream>
 
 #include <glm/glm.hpp>
+#include "Interval.h"
 
 using Color = glm::vec3;
 
-inline void WriteColor(std::ostream& out, const Color pixelColor)
+inline void WriteColor(std::ostream& out, const Color pixelColor, const int samples)
 {
-    out << static_cast<int>(255.999f * pixelColor.x) << ' '
-        << static_cast<int>(255.999f * pixelColor.y) << ' '
-        << static_cast<int>(255.999f * pixelColor.z) << '\n';
+    float r = pixelColor.x;
+    float g = pixelColor.y;
+    float b = pixelColor.z;
+
+    // Divide the color by the number of samples.
+    const float scale = 1.0f / static_cast<float>(samples);
+    r *= scale;
+    g *= scale;
+    b *= scale;
+
+    // Write the translated [0,255] value of each color component.
+    const Interval intensity{ 0.000f, 0.999f };
+    out << 256 * intensity.Clamp(r) << ' '
+        << 256 * intensity.Clamp(g) << ' '
+        << 256 * intensity.Clamp(b) << '\n';
 }
