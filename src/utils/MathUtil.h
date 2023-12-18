@@ -44,6 +44,17 @@ inline vec3 RandomVec3InUnitSphere()
 	}
 }
 
+inline vec3 RandomVec3InUnitDisk()
+{
+	while(true)
+	{
+		if (vec3 sampleVec{ RandomFloat(-1, 1), RandomFloat(-1, 1), 0 }; length2(sampleVec) < 1)
+		{
+			return sampleVec;
+		}
+	}
+}
+
 inline vec3 RandomVec3Unit()
 {
 	return normalize(RandomVec3InUnitSphere());
