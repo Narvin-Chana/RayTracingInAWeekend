@@ -38,6 +38,5 @@ public:
 		return hitAnything;
 	}
 
-private:
 	std::vector<std::unique_ptr<Hittable>> objects;
 };

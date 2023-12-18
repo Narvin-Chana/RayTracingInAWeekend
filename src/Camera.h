@@ -12,12 +12,12 @@ class Camera
 public:
 	Camera();
 
-	static constexpr float aspectRatio = 16.0f / 9.0f;
-	static constexpr int imageWidth = 400;
-	static constexpr int samplesPerPixel = 100; // Number of rays to shoot per pixel
-	static constexpr int maxDepth = 50; // Number of max bounces
+	float aspectRatio = 16.0f / 9.0f;
+	int imageWidth = 400;
+	int samplesPerPixel = 100; // Number of rays to shoot per pixel
+	int maxDepth = 50; // Number of max bounces
 
-	static constexpr float vfov = 20; // Vertical view angle (field of view)
+	float vfov = 20; // Vertical view angle (field of view)
 	vec3 lookfrom = vec3(-2, 2, 1); // Point camera is looking from
 	vec3 lookat = vec3(0, 0, -1); // Point camera is looking at
 	vec3 vup = vec3(0, 1, 0); // Camera-relative "up" direction
