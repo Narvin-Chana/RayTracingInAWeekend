@@ -1,5 +1,11 @@
 ﻿#pragma once
-#include "Hittable.h"
+#include <glm/glm.hpp>
+
+#include "Ray.h"
+
+using glm::vec3;
+
+struct Hittable;
 
 class Camera
 {

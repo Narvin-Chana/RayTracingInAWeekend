@@ -1,9 +1,11 @@
 ﻿#pragma once
 
+#include <memory>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
 #include "Hittable.h"
+#include "materials/Material.h"
 #include "Ray.h"
 
 using glm::vec3;
@@ -12,10 +14,14 @@ struct Sphere : Hittable
 {
 	vec3 center{};
 	float radius{};
+	const Material* material;
 
-	Sphere(vec3 center, const float radius)
+	Sphere(const vec3 center, const float radius, const Material* material)
 		: center{center}
-		, radius{radius}{}
+		  , radius{radius}
+		  , material{material}
+	{
+	}
 
 	bool Hit(const Ray& ray, const Interval rayInterval, HitRecord& record) const override
 	{
@@ -43,6 +49,7 @@ struct Sphere : Hittable
 
 		record.t = root;
 		record.point = ray.GetPoint(record.t);
+		record.material = material;
 		record.SetFaceNormal(ray, (record.point - center) / radius);
 
 		return true;

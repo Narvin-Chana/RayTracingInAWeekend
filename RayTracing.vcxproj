@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLM_ENABLE_EXPERIMENTAL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>GLM_ENABLE_EXPERIMENTAL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLM_ENABLE_EXPERIMENTAL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <PreprocessorDefinitions>GLM_ENABLE_EXPERIMENTAL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,19 +135,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Ray.cpp" />
-    <ClCompile Include="RayTracing.cpp" />
+    <ClCompile Include="src\materials\Metal.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\materials\Lambertian.cpp" />
+    <ClCompile Include="src\Ray.cpp" />
+    <ClCompile Include="src\RayTracing.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Hittable.h" />
-    <ClInclude Include="Interval.h" />
-    <ClInclude Include="MathUtil.h" />
-    <ClInclude Include="Ray.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="src\materials\Metal.h" />
+    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\Color.h" />
+    <ClInclude Include="src\geometry\Hittable.h" />
+    <ClInclude Include="src\Interval.h" />
+    <ClInclude Include="src\materials\Lambertian.h" />
+    <ClInclude Include="src\materials\Material.h" />
+    <ClInclude Include="src\materials\Metal.h" />
+    <ClInclude Include="src\utils\MathUtil.h" />
+    <ClInclude Include="src\Ray.h" />
+    <ClInclude Include="src\geometry\Scene.h" />
+    <ClInclude Include="src\geometry\Sphere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

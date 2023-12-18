@@ -2,7 +2,10 @@
 
 #include <iostream>
 
-#include "MathUtil.h"
+#include "Color.h"
+#include "utils/MathUtil.h"
+#include "Ray.h"
+#include "geometry/Hittable.h"
 
 using std::cout, std::clog, std::flush;
 

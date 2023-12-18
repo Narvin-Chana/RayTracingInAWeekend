@@ -1,11 +1,11 @@
 ﻿#pragma once
 
-#include <glm/vec3.hpp>
-
 #include "Interval.h"
 #include "Ray.h"
 
 using glm::vec3;
+
+struct Material;
 
 struct Hittable
 {
@@ -13,6 +13,7 @@ struct Hittable
 	{
 		vec3 point;
 		vec3 normal;
+		const Material* material;
 		float t;
 		bool isFrontFace;
 
