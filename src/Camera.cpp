@@ -9,11 +9,9 @@
 
 using std::cout, std::clog, std::flush;
 
-Camera::Camera()
-	: center{}
+void Camera::Init()
 {
-	imageHeight = static_cast<int>(imageWidth / aspectRatio);
-	imageHeight = imageHeight < 1 ? 1 : imageHeight;
+	imageHeight = std::max(1, static_cast<int>(static_cast<float>(imageWidth) / aspectRatio));
 
 	center = lookfrom;
 	// Viewport widths less than one are ok since they are real valued.

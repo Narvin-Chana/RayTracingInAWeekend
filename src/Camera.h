@@ -10,7 +10,6 @@ struct Hittable;
 class Camera
 {
 public:
-	Camera();
 
 	float aspectRatio = 16.0f / 9.0f;
 	int imageWidth = 400;
@@ -26,6 +25,7 @@ public:
 	// Distance from camera lookfrom point to plane of perfect focus (imagine how your eyes focus on a specific point in the world)
 	float focusDistance = 3.4f;
 
+	void Init();
 	void Render(const Hittable& world) const;
 
 private:

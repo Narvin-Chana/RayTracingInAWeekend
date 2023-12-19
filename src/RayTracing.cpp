@@ -18,7 +18,11 @@ using glm::vec3;
 int main()
 {
 	// World Scene
-	const auto materialGround = std::make_unique<Lambertian>(Color(0.5, 0.5, 0.5));
+	Scene scene;
+
+	const auto materialGround = std::make_unique<Lambertian>(Color(0.5f, 0.5f, 0.5f));
+	scene.objects.push_back(std::make_unique<Sphere>(vec3(0.0f, -1000.0f, 0.0f), 1000.0f, materialGround.get()));
+
 	//const auto materialCenter = std::make_unique<Lambertian>(Color(0.1, 0.2, 0.5));
 	//const auto materialLeft = std::make_unique<Dielectric>(1.5f);
 	//const auto materialRight = std::make_unique<Metal>(Color(0.8, 0.6, 0.2), 0.7f);
@@ -29,8 +33,6 @@ int main()
 	//	Sphere({-1.0f, 0.0f, -1.0f}, 0.5f, materialLeft.get()),
 	//	Sphere({1.0f, 0.0f, -1.0f}, 0.5f, materialRight.get())
 	//};
-
-	Scene scene;
 
 	std::vector<std::unique_ptr<Material>> materials;
 
@@ -95,6 +97,8 @@ int main()
 
 	camera.dofAngle = 0.6f;
 	camera.focusDistance = 10.0f;
+
+	camera.Init();
 
 	const auto start = high_resolution_clock::now();
 	camera.Render(scene);
